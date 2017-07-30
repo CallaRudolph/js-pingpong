@@ -1,12 +1,18 @@
-var del = require('del');
-var utilities = require('gulp-util');
 var gulp = require('gulp');
-var concat = require('gulp-concat');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var utilities = require('gulp-util');
+var del = require('del');
 var jshint = require('gulp-jshint');
 var buildProduction = utilities.env.production;
+
+gulp.task('jshint', function() {
+  return gulp.src(['js/*.js'])
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'));
+});
 
 gulp.task('concatInterface', function() {
   return gulp.src(['./js/*-interface.js'])
@@ -37,10 +43,4 @@ gulp.task('build', ['clean'], function() {
   } else {
     gulp.start('jsBrowserify');
   }
-});
-
-gulp.task('jshint', function() {
-  return gulp.src(['js/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
 });
