@@ -8,8 +8,8 @@ $(document).ready(function() {
   $('#weather-location').click(function() {
     var city = $('#location').val();
     $('#location').val("");
-    currentWeatherObject.getWeather(city);
+    currentWeatherObject.getWeather(city, displayHumidity);
   });
 });
-
-exports.displayHumidityFunction = displayHumidity;
+// 
+// exports.displayHumidityFunction = displayHumidity;
